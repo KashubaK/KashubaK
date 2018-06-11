@@ -1,0 +1,17 @@
+{{yield}}
+<div class="flex-100">
+    <div class="layout-row layout-wrap full-screen-slides-container">
+        {{#each slides as |slide|}} 
+            <div class="flex-100 flex-noshrink full-screen-slide layout-row layout-md-column layout-sm-column layout-xs-column layout-wrap">
+                <div class="slide-image flex-xl-33 flex-lg-50 flex-md-50 flex-sm-33 flex-xs-33" style={{html-safe (concat "background-image: url(" slide.image ");")}}></div>
+                <div class="slide-content flex-xl-66 flex-lg-50 flex-md-50 flex-sm-66 flex-xs-66 layout-column">
+                    <div class="slide-content-bg" style={{html-safe (concat "background-image: url(" slide.image ");")}}></div>
+                    <div class="flex"></div>
+                    <h1>{{html-safe slide.title}}</h1>
+                    <p>{{slide.body}}</p>
+                    <div class="flex"></div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

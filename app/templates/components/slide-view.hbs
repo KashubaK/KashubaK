@@ -1,0 +1,43 @@
+{{yield}}
+
+<div class="flex-100 layout-row layout-wrap slide">
+    <div class="flex-xl-33 flex-lg-50 flex-md-50 flex-sm-100 flex-xs-100 slide-image-container">
+        <div class={{concat "slide-image " slideClass}} style={{html-safe (concat "background-image: url(" slide.image ")")}}></div>
+        <div class={{concat "slide-image-bg slide-image " slideClass}} style={{html-safe (concat "background-image: url(" slide.image ")")}}></div>
+    </div>
+    <div class="flex-100 slide-content-container layout-column">
+        <div class={{concat "slide-content " slideClass}}>
+            <h1>
+                <div class="title-content">
+                    {{html-safe slide.title}}
+                </div>
+                <div class="slide-content-divider"></div>
+            </h1>
+            <p>{{html-safe slide.body}}</p>
+        </div>
+        <div class="flex">
+            <div class="controls-container">
+                <div class="controls-progress" style={{html-safe (concat "width: " percentToNextSlide "%;")}}></div>
+                <div class="controls">
+                    <div>
+                        {{#paper-button iconButton=true onClick=(action "prevSlide")}}
+                            {{paper-icon "skip_previous"}}
+                        {{/paper-button}}
+                    </div>
+
+                    <div class="play-toggle">
+                        {{#paper-button iconButton=true onClick=(action "toggleSlidePlayback")}}
+                            {{paper-icon (if playing "pause" "play_arrow")}}
+                        {{/paper-button}}
+                    </div>
+
+                    <div>
+                        {{#paper-button iconButton=true onClick=(action "nextSlide")}}
+                            {{paper-icon "skip_next"}}
+                        {{/paper-button}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

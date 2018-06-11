@@ -1,0 +1,376 @@
+@import 'color-palette';
+
+$primary: 'blue';
+$default-color: "900"; 
+
+@import 'ember-paper';
+
+$easeOutQuint: all 500ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+html {
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.nav-logo {
+    height: 40px;
+    width: 40px;
+}
+
+.navigation {
+    display: flex;
+
+    a {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 15px;
+        letter-spacing: 1px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
+
+.logo {
+    width: 430.62px;
+    height: 91.25px;
+
+    @media (max-width: 450px) {
+        width: 322.965px;
+        height: 68.4375px;
+    }
+
+    @media (max-width: 400px) {
+        width: 215.31px;
+        height: 45.625px;
+    }
+}
+
+body > .ember-view {
+    height: 100vh;
+    width: 100vw;
+
+    & > .layout-row {
+        height: calc(100vh - 64px);
+
+        @media (min-width: 795px) and (max-width: 959px) {
+            height: calc(100vh - 48px);
+        }
+
+        @media (max-width: 794px) {
+            height: calc(100vh - 56px);
+        }
+    }
+}
+
+.liquid-container {
+    padding: 0;
+    height: 100%;
+    overflow: visible;
+
+    .liquid-child {
+        height: 100%;
+        overflow: visible;
+    }
+}
+
+.inner-sidenav {
+    height: 100%;
+}
+
+.full-screen-slides-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    // Compensate for varying navbar heights
+    height: calc(100vh - 64px);
+
+    @media (min-width: 795px) and (max-width: 959px) {
+        height: calc(100vh - 48px);
+    }
+
+    @media (max-width: 794px) {
+        height: calc(100vh - 56px);
+    }
+}
+
+.full-screen-slide {
+    height: 75vh;
+
+    .slide-image {
+        height: 100%;
+        width: 100%;
+        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.25);
+
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+
+    .slide-content {
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+
+        .slide-content-bg {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            z-index: -1;
+
+            // compensate for blur
+            height: calc(100% + 40px);
+            width: calc(100% + 40px);
+
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+
+            -webkit-filter: blur(20px) saturate(180%) brightness(1.25);
+            opacity: 0.375;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            margin-top: 0;
+
+            @media (max-width: 599px) {
+                font-size: 36px;
+            }
+        }
+
+        p {
+            margin-bottom: 0;
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: 300;
+
+            @media (max-width: 599px) {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.slide-view {
+    overflow: hidden;
+
+    width: 100%;
+    padding: 15px;
+
+    .slide {
+        height: 100%;
+
+        .slide-image-container {
+            position: relative;
+            min-height: 33vh;
+
+            .slide-image {
+                @media (max-width: 599px) {
+                    margin-top: 0;
+                    margin-left: 0;
+    
+                    width: 100%;
+                    height: 100%;
+                }
+
+                margin-top: 15px;
+                margin-left: 15px;
+
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+                border-radius: 10px;
+
+                background-position: 50% 50%;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                z-index: 1;
+
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                &.animate {
+                    -webkit-animation: 1000ms animateSlideImage forwards;
+                    -webkit-animation-timing-function: $easeOutQuint;
+                }
+            }
+
+            .slide-image-bg {
+                z-index: 0;
+
+                -webkit-filter: blur(50px) saturate(180%);
+
+                @media (max-width: 599px) {                
+                    -webkit-filter: blur(25px) saturate(180%);
+                }
+            }
+        }
+
+        .slide-content-container {
+            padding: 15px;
+
+            @media (max-width: 599px) {
+                padding: 0;
+                margin-top: 15px;
+            }
+
+            .slide-content {
+                &.animate {
+                    -webkit-animation: 1000ms animateSlideContent forwards;
+                    -webkit-animation-timing-function: $easeOutQuint;
+                }
+
+                h1 {
+                    display: inline-block;
+                    font-size: 48px;
+                    margin-top: 0;
+                    margin-bottom: 0;
+
+                    @media (max-width: 599px) {
+                        font-size: 36px;
+                    }
+                }
+
+                .slide-content-divider {
+                    margin-top: 15px;
+                    width: 33%;
+                    height: 3px;
+                    background-color: black;
+                }
+
+                p {
+                    margin-bottom: 0;
+                    margin-top: 15px;
+                    font-size: 24px;
+                    font-weight: 300;
+
+                    @media (max-width: 599px) {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .controls-container {
+        width: 150px;
+        margin-top: 30px;
+        overflow: hidden;
+
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        background-color: rgba(255, 255, 255, 0.625);
+    }
+
+    .controls-progress {
+        height: 4px;
+        display: block;
+        background-color: color($color-blue, '300');
+        -webkit-transition: 100ms linear;
+    }
+
+    .controls {
+        padding: 5px 0 5px 0;
+        display: flex;
+
+        position: relative;
+
+        div {
+            border-right: 1px solid rgba(0, 0, 0, 0.25);
+
+            &:last-child {
+                border-right: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.projects {
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-bottom: 5vh;
+
+    height: calc(100vh - 64px);
+
+    overflow-y: auto;
+
+    @media (min-width: 795px) and (max-width: 959px) {
+        height: calc(100vh - 48px);
+    }
+
+    @media (max-width: 794px) {
+        height: calc(100vh - 56px);
+    }
+
+    @media (min-width: 599px) and (max-width: 959px) {
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+
+    @media (max-width: 599px) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .project {
+        margin-top: 5vh;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        display: flex;
+        max-height: none;
+        background-color: white;
+        overflow: hidden;
+
+        .content {
+            padding: 25px;
+            background-color: color($color-blue, '400');
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.375);
+            color: white;
+
+            h1 {
+                margin-top: 0;
+                font-size: 42px;
+
+                a {
+                    color: white;
+                }
+            }
+
+            p {
+                font-size: 18px;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes animateSlideImage {
+    0% {
+        -webkit-transform: translateY(15px);
+        opacity: 0;
+        box-shadow: 0 0 0 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        opacity: 1;
+        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+@-webkit-keyframes animateSlideContent {
+    0% {
+        -webkit-transform: translateX(-15px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        opacity: 1;
+    }
+}
+

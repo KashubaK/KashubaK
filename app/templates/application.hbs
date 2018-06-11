@@ -1,5 +1,19 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+        <img class="nav-logo" src="/logo_white.png">
+        <div class="flex"></div>
+        <div class="navigation">
+            <a href={{href-to "index"}}>
+                Home
+            </a>
+            <a href={{href-to "software"}}>
+                Software
+            </a>
+            <a href={{href-to "projects"}}>
+                Projects
+            </a>
+        </div>   
+    {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
 
-{{outlet}}
+{{liquid-outlet}}
